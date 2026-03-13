@@ -81,6 +81,10 @@ struct Node* merge_ll(struct Node* first, struct Node* second)
     {
         return second;
     }
+    else
+    {
+        return first;
+    }
     struct Node *new, *last;
     if(first->data < second->data)
     {
@@ -112,6 +116,8 @@ struct Node* merge_ll(struct Node* first, struct Node* second)
             second = second->next;
             last->next = NULL;
         }
+    }
+
         if(first!=NULL)
         {
             last->next = first;
@@ -120,7 +126,6 @@ struct Node* merge_ll(struct Node* first, struct Node* second)
         {
             last->next = second;
         }
-    }
     return new;
 }
 
