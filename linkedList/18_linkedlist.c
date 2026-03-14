@@ -19,7 +19,7 @@ int main(void)
     struct Node* head;
     head = input_ll();
     
-    make_circular_ll(head);
+    //make_circular_ll(head);    // this is just for making the linked list circular 
 
     if(isCircular(head) == 1)
         printf("The linked list is circular\n");
