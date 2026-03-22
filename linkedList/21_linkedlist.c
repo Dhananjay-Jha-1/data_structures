@@ -12,7 +12,8 @@ struct Node
 struct Node* input_ll(void);
 struct Node* create_ll(int A[], int n);
 void make_circular_ll(struct Node* p);
-void delete_ll(int pos, struct Node* p);
+int length_ll(struct Node* p);
+struct Node* delete_ll(int pos, struct Node* p);
 void display_ll(struct Node* p);
 
 int main(void)
@@ -27,7 +28,7 @@ int main(void)
     printf("Enter the position at which the node shall be deleted : ");
     scanf("%d", &pos);
 
-    delete_ll(pos, head);
+    head = delete_ll(pos, head);
     
     display_ll(head);
 
@@ -89,12 +90,12 @@ void make_circular_ll(struct Node* p)
     p->next = temp;
 }
 
-void delete_ll(int pos, struct Node* p)
+struct Node* delete_ll(int pos, struct Node* p)
 {
-    if(pos <= 0)
+    if(pos <= 0 || pos > length_ll(p))
     {
-        printf("No negative numbers allowed as position ");
-        return;
+        printf("Invalid position\n");
+        return p;
     }
     else if(pos == 1)
     {
@@ -106,11 +107,17 @@ void delete_ll(int pos, struct Node* p)
         }while(p->next != temp);
         
         p->next = temp->next;
+        
+        struct Node* new_head = temp->next;
+
         free(temp);
+
+        return new_head;
     }
     else
     {
         struct Node* trail = p;
+        struct Node* new_head = p;
 
         for(int i = 0; i < pos-1; i++)
         {
@@ -119,6 +126,7 @@ void delete_ll(int pos, struct Node* p)
         }
         trail->next = p->next;
         free(p);
+        return new_head;
     }
 }
 
@@ -131,6 +139,24 @@ void display_ll(struct Node* p)
         p = p->next;
     }while(p != temp);
 }
+
+int length_ll(struct Node* p)
+{
+    struct Node* temp = p;
+    int count = 0;
+    do
+    {
+        count++;
+        p = p->next;
+    }while(p->next != temp);
+
+    return count;
+}
+
+
+
+
+
 
 
 
