@@ -148,7 +148,7 @@ int length_ll(struct Node* p)
     {
         count++;
         p = p->next;
-    }while(p->next != temp);
+    }while(p != temp);
 
     return count;
 }
