@@ -18,7 +18,7 @@ int peek(struct stack st, int position);
 int is_empty(struct stack st);
 int is_full(struct stack st);
 int stack_top(struct stack st);
-
+void free_stack(struct stack* st);
 
 int main(void)
 {
@@ -38,6 +38,8 @@ int main(void)
     display_stack(st);
 
     printf("The element at position 2 is : %d ",peek(st, 2)); 
+    
+    free_stack(&st);
 
     return 0;
 }
@@ -143,6 +145,17 @@ int stack_top(struct stack st)
     {
         return st.arr[st.top];
     }
+}
+
+//The OS frees it up but I am just doing it as a good little habbit
+void free_stack(struct stack* st)
+{
+    if(st == NULL)
+        return;
+
+    free(st->arr);
+    st->arr = NULL;   //avoids dangling pointer
+
 }
 
 
