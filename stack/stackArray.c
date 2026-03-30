@@ -15,6 +15,9 @@ void display_stack(struct stack st);
 void push(struct stack* st, int value);
 int pop(struct stack* st);
 int peek(struct stack st, int position);
+int is_empty(struct stack st);
+int is_full(struct stack st);
+int stack_top(struct stack st);
 
 
 int main(void)
@@ -106,6 +109,41 @@ int peek(struct stack st, int position)
     return st.arr[index];
 }
 
+int is_empty(struct stack st)
+{
+    if(st.top == -1)
+    {
+        return 1;   //true
+    }
+    else
+    {
+        return 0;  
+    }
+}
+
+int is_full(struct stack st)
+{
+    if(st.top == st.size - 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int stack_top(struct stack st)
+{
+    if(is_empty(st))
+    {
+        return -1;
+    }
+    else
+    {
+        return st.arr[st.top];
+    }
+}
 
 
 
